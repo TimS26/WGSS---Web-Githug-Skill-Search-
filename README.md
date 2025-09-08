@@ -2,6 +2,7 @@
 
 A lightweight, Flask-powered web application that lets developers create and showcase their portfolios with skill-based filtering and GitHub integration. Perfect for sharing your work in one centralized place. To sucsesfully run the prograam you shuld check out its structure.
 
+Structure:
 C:/your_project_name/
 
 │
