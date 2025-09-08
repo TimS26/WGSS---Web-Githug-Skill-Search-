@@ -1,6 +1,23 @@
 🏗️ Developer Portfolio Web App
 
-A lightweight, Flask-powered web application that lets developers create and showcase their portfolios with skill-based filtering and GitHub integration. Perfect for sharing your work in one centralized place.
+A lightweight, Flask-powered web application that lets developers create and showcase their portfolios with skill-based filtering and GitHub integration. Perfect for sharing your work in one centralized place. To sucsesfully run the prograam you shuld check out its structure.
+
+Stucture:
+C:your_porgect_name/
+                    /static
+                            /style.css
+                            /styleD.css
+                            /placeholder.png
+                            /594de9ef-44c8-4833-be90-579a6a697fb8_Dummy_presentation.jpg
+                    /templates
+                              /all_porfolios.html
+                              /create_portfolio.html
+                              /form.html
+                              /portfolio_detail.html
+                              /regiser.html
+                    /main.py
+                    /portfolios.db
+  
 
 🌟 Features
 
