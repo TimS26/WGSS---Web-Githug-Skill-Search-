@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Портфолио {{ user[2] }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css' if theme == 'dark' else 'styleD.css') }}">
+</head>
+<body>
+<div class="theme-switcher">
+  <a href="{{ url_for('set_theme', theme='dark') }}" class="button-secondary">Dark</a>
+  <a href="{{ url_for('set_theme', theme='light') }}" class="button-secondary">Light</a>
+</div>
+<div class="portfolio-flex">
+    <div class="profile-panel">
+        <img src="{{ url_for('static', filename=user[6]) }}" alt="Аватар" class="avatar">
+        <h1>{{ user[2] }}</h1>
+        <div class="portfolio-info">
+            <p><strong>О себе:</strong> {{ user[3] }}</p>
+            <p class="skills"><strong>Навыки:</strong> {{ user[7] }}</p>
+        </div>
+        <div class="links">
+            {% if user[5] %}
+            <a href="{{ user[5] }}" target="_blank">Telegram</a>
+            {% endif %}
+            {% if user[4] %}
+            <a href="{{ user[4] if user[4].startswith('http') else 'https://github.com/' ~ user[4] }}" target="_blank">GitHub</a>
+            {% endif %}
+        </div>
+        <div style="margin-top: 32px;">
+            <a href="{{ url_for('index') }}" class="button-secondary">Назад к портфолио</a>
+        </div>
+    </div>
+    <div class="repos-panel">
+        <div class="repos-list">
+            <h2>GitHub проекты</h2>
+            {% if repos %}
+            <ul>
+                {% for repo in repos %}
+                <li>
+                    <a href="{{ repo.html_url }}" target="_blank">{{ repo.name }}</a>
+                    — {{ repo.description or "Без описания" }}
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>Нет доступных репозиториев.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+</body>
+</html>

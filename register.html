@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css' if theme == 'dark' else 'styleD.css') }}">
+</head>
+<body>
+<div class="theme-switcher">
+  <a href="{{ url_for('set_theme', theme='dark') }}" class="button-secondary">Dark</a>
+  <a href="{{ url_for('set_theme', theme='light') }}" class="button-secondary">Light</a>
+</div>
+<div class="all-portfolio-container">
+    <h1 class="all-title">Регистрация</h1>
+    <form class="registration-form" method="post" action="{{ url_for('register') }}">
+        <label>Имя пользователя:
+            <input type="text" name="username" required>
+        </label>
+        <label>Email:
+            <input type="email" name="email" required>
+        </label>
+        <label>Пароль:
+            <input type="password" name="password" required>
+        </label>
+        <button type="submit" class="button-secondary">Зарегистрироваться</button>
+    </form>
+</div>
+</body>
+</html>

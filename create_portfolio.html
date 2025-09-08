@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Создать портфолио</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css' if theme == 'dark' else 'styleD.css') }}">
+</head>
+<body>
+<div class="theme-switcher">
+  <a href="{{ url_for('set_theme', theme='dark') }}" class="button-secondary">Dark</a>
+  <a href="{{ url_for('set_theme', theme='light') }}" class="button-secondary">Light</a>
+</div>
+<div class="all-portfolio-container">
+    <h1 class="all-title">Создать портфолио</h1>
+    <form class="registration-form" method="post" action="{{ url_for('create_portfolio') }}" enctype="multipart/form-data">
+        <label>Имя:
+            <input type="text" name="name" required>
+        </label>
+        <label>Био:
+            <input type="text" name="bio" required>
+        </label>
+        <label>GitHub:
+            <input type="text" name="github">
+        </label>
+        <label>Telegram:
+            <input type="text" name="telegram">
+        </label>
+        <label>Навыки:
+            <input type="text" name="skills">
+        </label>
+        <label>Фото Аватара:
+            <input type="file" name="avatar" accept="image/*">
+        </label>
+        <button type="submit" class="button-secondary">Создать</button>
+    </form>
+</div>
+</body>
+</html>

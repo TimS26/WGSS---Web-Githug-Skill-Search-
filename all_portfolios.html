@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Все портфолио</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css' if theme == 'dark' else 'styleD.css') }}">
+</head>
+<body>
+<form method="get" style="margin-bottom: 32px;">
+    <select name="skill" onchange="this.form.submit()" style="padding: 10px 18px; border-radius: 10px;">
+        <option value="">— Выбери навыки для себя —</option>
+        {% for skill, icon in tool_icons.items() %}
+            <option value="{{ skill.lower() }}" {% if current_skill == skill.lower() %}selected{% endif %}>
+                {{ icon }} {{ skill }}
+            </option>
+        {% endfor %}
+    </select>
+</form>
+<div class="theme-switcher">
+  <a href="{{ url_for('set_theme', theme='dark') }}" class="button-secondary">Dark</a>
+  <a href="{{ url_for('set_theme', theme='light') }}" class="button-secondary">Light</a>
+</div>
+<div class="all-portfolio-container">
+    <h1 class="all-title">Портфолио пользователей</h1>
+    <a href="{{ url_for('create_portfolio') }}" class="button-secondary">Создать портфолио</a>
+    <div class="grid">
+        {% for p in portfolios %}
+        <div class="card">
+            <img src="{{ url_for('static', filename=p.avatar) }}" alt="Аватар" class="avatar">
+            <h2>{{ p.name }}</h2>
+            <div class="portfolio-info">
+                <p><strong>О себе:</strong> {{ p.bio }}</p>
+                <p class="skills">
+                    <strong>Навыки:</strong>
+                    {% for skill in p.skills %}
+                        <span class="badge">{{ tool_icons.get(skill.strip(), '') }} {{ skill }}</span>
+                    {% endfor %}
+                </p>
+            </div>
+            <a href="{{ url_for('portfolio_detail', user_uuid=p.uuid) }}" class="button-secondary">Подробнее</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</body>
+</html>
